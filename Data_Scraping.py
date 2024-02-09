@@ -1,9 +1,21 @@
+
+# Importing necessary libraries
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from PIL import Image
+import time
+from tqdm import tqdm
+
+
+# Static variables for the map coordinates, user directory, and location name.
+# These should be filled out before running the script.
 mapCord = "-118.33681%2C34.08500%2C15"
 user = ''
 loc = "UCLA"
 
-# Define the path to your text file
-file_path = "data.txt"  # Replace "your_file.txt" with the path to your text file
+# Path to the text file containing dates and corresponding Wayback item numbers
+file_path = "data.txt"
+
 
 # Initialize an empty dictionary to store the data
 data_dict = {}
@@ -16,16 +28,10 @@ with open(file_path, "r") as file:
         # Add the date and number to the dictionary
         data_dict[date] = int(number)
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from PIL import Image
-import time
-from tqdm import tqdm
 
 for date in tqdm(data_dict, desc="Capturing Screenshots"):
-    # Initialize the WebDriver for Firefox
+
     browser = webdriver.Firefox()
-    
     browser.maximize_window()
 
     # Navigate to the URL
@@ -34,7 +40,7 @@ for date in tqdm(data_dict, desc="Capturing Screenshots"):
     browser.get(link)
 
     # Wait for the cookie consent popup to load
-    time.sleep(2)  # Adjust time as necessary
+    time.sleep(2)
 
     # Click the "Accept All Cookies" button
     accept_button = browser.find_element(By.ID, "onetrust-accept-btn-handler")
@@ -52,10 +58,9 @@ for date in tqdm(data_dict, desc="Capturing Screenshots"):
     screenshot_path = 'C:/Users/'+user+'/Downloads/'+loc+'/temp.png'
     browser.save_screenshot(screenshot_path)
 
-    left = 400
-    upper = 60
-    right = 1910
-    lower = 930
+    # Define the crop area to exclude any unwanted parts of the screenshot
+    # These coordinates are specific to the the Digital Creative Lab Screen at USC
+    left, upper, right, lower = 400, 60, 1910, 930
 
     # Open the full screenshot and crop it to the red boundary area
     img = Image.open(screenshot_path)
