@@ -5,13 +5,18 @@ from selenium.webdriver.common.by import By
 from PIL import Image
 import time
 from tqdm import tqdm
+import sys
 
 
 # Static variables for the map coordinates, user directory, and location name.
 # These should be filled out before running the script.
-mapCord = "-118.33681%2C34.08500%2C15"
-user = ''
-loc = "UCLA"
+# sys command input is used to take the map coordinates, user directory, and location name as input ex: 
+mapCord = sys.argv[1]
+user = sys.argv[2]
+loc = sys.argv[3]
+# mapCord = "-118.33681%2C34.08500%2C15"
+# user = ''
+# loc = "UCLA"
 
 # Path to the text file containing dates and corresponding Wayback item numbers
 file_path = "data.txt"
@@ -55,7 +60,8 @@ for date in tqdm(data_dict, desc="Capturing Screenshots"):
     time.sleep(2)
 
     # Take a screenshot and save it
-    screenshot_path = 'C:/Users/'+user+'/Downloads/'+loc+'/temp.png'
+    # screenshot_path = 'C:/Users/'+user+'/Downloads/'+loc+'/temp.png'
+    screenshot_path = user + '/temp.png'
     browser.save_screenshot(screenshot_path)
 
     # Define the crop area to exclude any unwanted parts of the screenshot
@@ -67,7 +73,8 @@ for date in tqdm(data_dict, desc="Capturing Screenshots"):
     cropped_img = img.crop((left, upper, right, lower))
 
     # Save the cropped image
-    cropped_img_path = 'C:/Users/'+user+'/Downloads/'+loc+'/' + date + '.png'
+    # cropped_img_path = 'C:/Users/'+user+'/Downloads/'+loc+'/' + date + '.png'
+    cropped_img_path = user + '/' + date + '.png'
     cropped_img.save(cropped_img_path)
 
     # Clean up by closing the browser
