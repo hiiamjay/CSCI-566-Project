@@ -1,6 +1,9 @@
 USC
 https://livingatlas.arcgis.com/wayback/#active=56102&mapCenter=-118.28042%2C34.02075%2C15
 
+LV1 (Las Vegas)
+https://livingatlas.arcgis.com/wayback/#active=37965&mapCenter=-115.29850%2C36.06400%2C14
+
 LV2 (Las Vegas)
 https://livingatlas.arcgis.com/wayback/#active=56102&mapCenter=-114.96065%2C36.05273%2C15
 
@@ -13,7 +16,7 @@ https://livingatlas.arcgis.com/wayback/#active=37965&mapCenter=-119.87436%2C34.4
 Solvang
 https://livingatlas.arcgis.com/wayback/#active=37965&mapCenter=-120.13533%2C34.59710%2C15
 
-Salt Lake City Outski
+Salt Lake City Outskirts
 https://livingatlas.arcgis.com/wayback/#active=37965&mapCenter=-112.03923%2C41.31935%2C15
 
 Seattle
